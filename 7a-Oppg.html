@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <p>Oppgave 7a - Variabel til tilfeldig tall</p>
+    <button onclick="calculate()">Random</button>
+    <div id="resultat"></div>
+
+    <script>
+        var resultatDiv = document.getElementById('resultat');
+        calculate();
+        function calculate() {
+            console.log ('Tilfeldig tall');
+            var bredde = Math.floor(Math.random() * 10);
+            var høyde = Math.floor(Math.random() * 10);
+            var borderSize = Math.floor(Math.random() * 10);
+            resultatDiv.innerHTML = '' +
+                'Bredde: ' + bredde + '<br/>' +
+                'Høyde: ' + høyde + '<br />' +
+                'Border-Størrelse: ' + borderSize;
+                
+        }
+    </script>
+</body>
+</html>
