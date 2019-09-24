@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body onload="testOnLoad()">
+    <p>Ferdighet 2a - Alternative eventhandlere: onchange osv.</p>
+    <input type="text" onkeydown="testOnKeyDown()" oninput="testOnInput()" />
+    <h3 ondblclick="testdblClick()" oncontextmenu="testOnContextMenu()">Test test test</h3>
+    <h2 id="info"></h2>
+
+    <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">Mer informasjon her</a>
+    <script>
+        function testOnLoad() {
+           var test= document.getElementById('info').innerHTML += '<li>onload</li>';
+           console.log(test);
+        }
+        function testOnKeyDown() {
+            var test= document.getElementById('info').innerHTML += '<li>onkeydown</li>';
+            console.log(test);
+        }
+        function testOnInput() {
+            document.getElementById('info').innerHTML += '<li>oninput</li>';
+        }
+        function testdblClick() {
+            document.getElementById('info').innerHTML += '<li>ondblclick</li>';
+        }
+        function testOnContextMenu() {
+            document.getElementById('info').innerHTML += '<li>oncontextmenu</li>';
+        }
+
+        var liste = document.getElementById('info').innerHTML;
+        console.log("info");
+        
+    </script>
+</body>
+</html>
