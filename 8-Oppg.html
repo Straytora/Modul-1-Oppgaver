@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .ramme {
+            border: blue 5px solid;
+        }
+
+        .bakgrunn {
+            background-color: cadetblue;
+        }
+
+        .farge {
+            color: crimson;
+        }
+
+        .padde {
+            Padding-top: 10px;
+        }
+
+        .marg {
+            Margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>Oppgave 8</p>
+    <button id="buttonA" onclick="chooseBox('A')">Velg Div A</button>
+    <button id="buttonB" onclick="chooseBox('B')">Velg Div B</button><br />
+    <p id="valgt">Du har valgt</p>
+    <div id="A">Dette er Div A</div><br />
+    <div id="B">Dette er Div B</div><br />
+    Bakgrunnsfarge: <input id="chk1" type="checkbox" onclick="toggleStyle()" /><br />
+    Tekstfarge: <input id="chk2" type="checkbox" onclick="toggleStyle()" /><br />
+    Margin: <input id="chk3" type="checkbox" onclick="toggleStyle()" /><br />
+    Padding: <input id="chk4" type="checkbox" onclick="toggleStyle()" /><br />
+    Ramme: <input id="chk5" type="checkbox" onclick="toggleStyle()" /><br />
+
+    <script>
+
+        var divA = document.getElementById("buttonA");
+        var divB = document.getElementById("buttonB");
+        var valgtDiv;
+        var swapingDiv;
+
+        function chooseBox(divBokstav) {
+            document.getElementById('valgt').innerHTML = 'Du har valgt ' + divBokstav;
+            valgtDiv =  document.getElementById(divBokstav);
+            
+            valgtDiv.classList.add('selected');
+            valgtDiv.classList.remove('selected');
+
+            chk1.checked = valgtDiv.classList.contains('bakgrunn');
+            chk2.checked = valgtDiv.classList.contains('farge');
+            chk3.checked = valgtDiv.classList.contains('marg');
+            chk4.checked = valgtDiv.classList.contains('padde');
+            chk5.checked = valgtDiv.classList.contains('ramme');
+
+        }
+        
+        function toggleStyle() {
+            var isChecked = document.getElementById('chk1').checked;
+            valgtDiv.classList.toggle('bakgrunn', isChecked);
+            var isChecked = document.getElementById('chk2').checked;
+            valgtDiv.classList.toggle('farge', isChecked);
+            var isChecked = document.getElementById('chk3').checked;
+            valgtDiv.classList.toggle('marg', isChecked);
+            var isChecked = document.getElementById('chk4').checked;
+            valgtDiv.classList.toggle('padde', isChecked);
+            var isChecked = document.getElementById('chk5').checked;
+            valgtDiv.classList.toggle('ramme', isChecked);
+
+        }
+
+        
+
+    </script>
+</body>
+
+</html>
