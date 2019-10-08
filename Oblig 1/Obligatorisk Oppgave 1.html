@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        div.header {
+            background-color: azure;
+            grid-area: header;
+            text-align: center;
+        }
+
+        div.menu {
+            background-color:firebrick;
+            grid-area: menu;
+            text-align: center;
+            padding-bottom: 10px;
+            color: azure;
+        }
+
+        div.mainContent {
+            background-color: azure;
+            grid-area: mainContent;
+            padding: 20px;
+            text-align: center;
+        }
+
+        div.footer {
+            background-color: firebrick;
+            grid-area: footer;
+            text-align: center;
+            color: azure;
+        }
+
+        div.page {
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            grid-template-rows: 100px 10fr 800px;
+            grid-template-areas: 'header header' 
+                                 'menu menu'
+                                 'mainContent mainContent'
+                                 'footer footer';
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <h1 onclick="changeHeader(this)">What do we say?</h1>
+        </div>
+        <div class="menu">
+            <h2 onclick="clickMenu()">Menu</h2>
+            <div id="menu">
+            <button onclick="getQuote()" id="quotes">Random Quote</button>
+            <button onclick="clickImage()" id="bilde">The meaning of life</button>
+            </div>
+        </div>
+        <div class="mainContent" id="innhold">"Well, it was good while it lasted. We killed some boredom, didn't we?<br>We did some various and interesting things."<br>- Ryuk</div>
+        <div class="footer">Nailed it.</div>
+    </div>
+</body>
+<script>
+
+    var quotes = [
+        ["It is incredibly empowering to know that your future is in your hands. - Keanu Reeves"],
+        ["The only thing that we are allowed to do is to believe that we won't regret the choice we made. - Levi Ackerman"],
+        ["There's nothing crueler than letting a dream end midway. - Shota Aizawa"],
+        ["It does not matter how slowly you go as long as you don't stop. - Confucius"],
+        ["Everyone had to be drunk on something to keep moving on. Everyone was a slave to something. - Kenny Ackerman"],
+        ["Acquiring knowledge is good, but you need experience as well - Elias Ainsworth"],
+        ];
+
+    function getQuote() {
+        randomQuote = Math.floor(Math.random() * quotes.length);
+        document.getElementById("innhold").innerHTML = quotes[randomQuote];
+    }
+
+    function clickImage() {
+        document.getElementById("innhold").innerHTML = "<img src='https://piaamu.files.wordpress.com/2016/05/dsc00399.jpg?w=700&h='>"
+    }
+
+    function changeHeader(byttOverskrift) {
+        byttOverskrift.innerHTML = 'Long Live Kira';
+    }
+
+    clickMenu();
+    function clickMenu() {
+        var Menu = document.getElementById("menu");
+        if (Menu.style.display === "none") {
+            Menu.style.display = "block";
+        } else {
+            Menu.style.display = "none";
+        }
+        
+
+    }
+</script>
+
+</html>
