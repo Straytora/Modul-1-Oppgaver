@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <p>Oppgave 9e</p>
+    <select id="colorChooser" onchange="showDiv()">
+        <option value="black">Svart</option>
+        <option value="lightgreen">Grønn</option>
+        <option value="darkblue">Blå</option>
+        <option value="red">Rød</option>
+        <option value="lightgrey">Grå</option>
+    </select>
+    <div id="resultat" style="width: 500px; height: 250px;">Resultat</div>
+    <script>
+
+        var resultatDiv = document.getElementById('resultat');
+        var colorChooser = document.getElementById('colorChooser');
+
+        showDiv();
+        function showDiv() {
+            console.log(resultatDiv.style.color)
+            resultatDiv.style.backgroundColor = colorChooser.value;
+            if (resultatDiv.style.backgroundColor == 'black' || resultatDiv.style.backgroundColor == 'red' || resultatDiv.style.backgroundColor == 'darkblue') {
+                resultatDiv.style.color = 'white';
+            }
+            else if (resultatDiv.style.backgroundColor == 'lightgreen' || resultatDiv.style.backgroundColor == 'lightgrey') {
+                resultatDiv.style.color = 'black';
+            }
+        }
+
+    </script>
+</body>
+
+</html>
