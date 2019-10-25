@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .selected {
+            Stroke: Black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <svg id="chart" width="500" viewBox="0 0 80 60"></svg>
+    </div>
+    Valgt stolpe: <i id="info">ingen</i><br />
+    Verdi: <input id="input" type="number" min="1" max="10" /><button onclick="addBar()">Legg til stolpe</button>
+    <button onclick="changeBar()" id="change" disabled>Endre valgt stolpe</button><br />
+    <button onclick="deleteBar()" id="remove" disabled>Fjerne valgt stolpe</button>
+</body>
+<script>
+
+    //Model
+    let numbers = [7, 3, 1, 5, 8];
+    var svgTag = document.getElementById('chart');
+    var infoDiv = document.getElementById('info');
+    var selectedBar = null;
+    let changeBtn = document.getElementById('change');
+    let removeBtn = document.getElementById('remove');
+    let min = 1;
+    let max = 10;
+    let input = document.getElementById('input');
+
+    // View
+    showChart();
+
+    function showChart() {
+        let svgInnerHtml = '';
+        for (let i = 0; i < numbers.length; i++) {
+            let barNo = i + 1;
+            svgInnerHtml += createBar(numbers[i], barNo);
+        }
+        svgTag.innerHTML = svgInnerHtml;
+
+        if (selectedBar === null) {
+            infoDiv.innerHTML = 'Ingen'
+            changeBtn.disabled = true;
+            removeBtn.disabled = true;
+        } else {
+            infoDiv.innerHTML = selectedBar;
+            changeBtn.disabled = false;
+            removeBtn.disabled = false;
+        }
+    }
+
+    // selectedBar == null ?
+    // (infoDiv.innerHTML = 'Ingen', changeBtn.disabled = true, removeBtn.disabled = true) :
+    // (infoDiv.innerHTML = selectedBar, changeBtn.disabled = false, removeBtn.disabled = false);
+
+    // Controller
+
+    function addBar() {
+        input.value >= min && input.value <= max
+            ? numbers.push(parseInt(input.value))
+            : alert('Ikke gyldig verdi.');
+
+        showChart();
+    }
+    // if(input.value >= min && input.value <= max) {
+    // numbers.push(parseInt(input.value));
+
+
+    function changeBar() {
+        input.value >= min && input.value <= max
+            ? numbers[selectedBar - 1] = parseInt(input.value)
+            : alert('Ikke gyldig verdi.');
+        showChart();
+
+    }
+    //    if(input.value >= min && input.value <= max) {
+    //    numbers[selectedBar-1] = parseInt(input.value)
+    //    changeBtn.disabled = true;
+    //    showChart(selectedBar);
+    //    }
+    //    else {
+    //        alert('Ikke gyldig verdi.');
+    //    }
+
+
+    function deleteBar() {
+        numbers.splice(selectedBar - 1, 1);
+        selectedBar = null;
+        removeBtn.disabled = true;
+        showChart();
+
+    }
+
+    function createBar(number, barNo) {
+        const width = 8;
+        const spacing = 2;
+        let x = (barNo - 1) * (width + spacing);
+        let height = number * 10;
+        let y = 60 - height;
+        let color = calcColor(1, 10, barNo);
+        let stroke;
+        if (barNo == selectedBar) {
+            stroke = "class='selected'"
+        }
+        return `<rect onclick="selectBar(${barNo})" ${stroke} width="${width}" height="${height}"
+                            x="${x}" y="${y}" fill="${color}"></rect>`;
+    }
+
+    function calcColor(min, max, val) {
+        var minHue = 240, maxHue = 0;
+        var curPercent = (val - min) / (max - min);
+        var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+        return colString;
+    }
+
+    function selectBar(stolpe) {
+        selectedBar = stolpe == selectedBar ? null : selectedBar = stolpe;
+        showChart();
+    }
+
+    // if (stolpe == selectedBar) {
+    //     selectedBar = null;
+
+    // } else {
+    //     selectedBar = stolpe;
+    // }
+</script>
+
+</html>
